@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/CanvasStyles/CanvasStyle.css" rel="stylesheet" />
+    <script src="Scripts/kinetic-v5.1.0.js"></script>
+</head>
+<body>
+    <img src="Content/Images/Red_Ballad-150x150.png" />
+    <div class="container">
+        <div id="drawCanvas"></div>
+    </div>
+    <script>
+        //Adds Canvas to div id drawCanvas
+        var stage = new Kinetic.Stage({
+            container: 'drawCanvas',
+            width: 578,
+            height: 200
+        });
+        var layer = new Kinetic.Layer();
+        var background = new Kinetic.Rect({
+            x: 0,
+            y: 0,
+            width: stage.getWidth(),
+            height: stage.getHeight(),
+            fill: 'white',
+            stroke: 'black',
+            strokeWidth: 1,
+        });
+
+    </script>
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>
