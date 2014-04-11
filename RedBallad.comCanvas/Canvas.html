@@ -58,6 +58,11 @@
 
     <input type="file" id="imgLoader">
 
+    <button class="btn btn-object-action" id="delete-item"
+            >
+        Remove selected object/group
+    </button>
+
     <script>
         (function () {
             var $ = function (id) { return document.getElementById(id) };
@@ -227,7 +232,7 @@
                 canvas.freeDrawingBrush.shadowBlur = 0;
             }
 
-
+            //handling the image uploading
             document.getElementById('imgLoader').onchange = function handleImage(e) {
                 var reader = new FileReader();
                 reader.onload = function (event) { console.log('fdsf');
@@ -253,6 +258,19 @@
                 }
                 reader.readAsDataURL(e.target.files[0]);
             }
+
+            //handling deleting selected objects
+            var deleteSelectedObject = document.getElementById('delete-item');
+            deleteSelectedObject.onclick = function () {
+                if (canvas.getActiveGroup()) {
+                    canvas.getActiveGroup().forEachObject(function (o) { canvas.remove(o) });
+                    canvas.discardActiveGroup().renderAll();
+                } else {
+                    canvas.remove(canvas.getActiveObject());
+                }
+            };
+
+
         })();
 
     </script>
