@@ -1,5 +1,9 @@
 ﻿body {
 }
 #drawCanvas{
-   border:1px solid #000000;
+   float:right;
+}
+
+#display{
+    float:left;
 }

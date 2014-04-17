@@ -14,20 +14,12 @@
 </head>
 <body>
     <img src="Content/Images/Red_Ballad-150x150.png" />
-    <div class="container">
-        <div id="drawCanvas"></div>
+    <div style="margin-left:760px">
+        <button id="showOutside">Show outside of card</button>
+        <button id="showInside">Show inside of card</button><br>
     </div>
 
-   
-    <canvas id="mycanvasOutside" width="500" height="500" style="border:1px solid #000000;">
-        Your browser does not support the HTML5 canvas tag.
-    </canvas>
-
-    <canvas id="myCanvasInside" width="500" height="500" style="border:1px solid #000000;">
-        Your browser does not support the HTML5 canvas tag.
-    </canvas>
-
-    <div style="display: inline-block; margin-left: 10px">
+    <div style="float:left; margin-left: 10px">
         <button id="selection-mode" class="btn btn-info">Select</button><br>
         <button id="drawing-mode" class="btn btn-info">Draw</button><br>
         <button id="delete-item" class="btn btn-info">Remove selected object/group</button><br>
@@ -54,6 +46,30 @@
             <label for="drawing-color">Line color:</label>
             <input type="color" value="#005E7A" id="drawing-color"><br>
 
+            <input type="file" id="imgLoader">
+
+
+            <div id="adding-shapes-options">
+                <label for="adding-shapes-selector">Shape:</label>
+                <select id="adding-shapes-selector">
+                    <option value="0">Circle</option>
+                    <option value="1">Rectangle</option>
+                    <option value="2">Triangle</option>
+
+
+                    <!--<option>hline</option>
+                    <option>vline</option>
+                    <option>square</option>
+                    <option>diamond</option>
+                    <option>texture</option>-->
+                </select><br>
+
+                <label for="shape-color">Shape color:</label>
+                <input type="color" value="#005E7A" id="shape-color"><br>
+                <button id="add-shape" class="btn btn-info">Add shape</button>
+            </div>
+
+
             <!--<label for="drawing-shadow-color">Shadow color:</label>-->
             <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
 
@@ -64,32 +80,15 @@
             <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
         </div>
     </div>
+    <div style="float:left">
+        <canvas id="mycanvasOutside" width="1224" height="792" style="border:1px solid #000000;">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
 
-    <input type="file" id="imgLoader">
-
-    <button id="showOutside">Show outside of card</button>
-    <button id="showInside">Show inside of card</button>
-
-    <div id="adding-shapes-options">
-        <label for="adding-shapes-selector">Shape:</label>
-        <select id="adding-shapes-selector">
-            <option value="0">Circle</option>
-            <option value="1">Rectangle</option>
-            <option value="2">Triangle</option>
-
-
-            <!--<option>hline</option>
-        <option>vline</option>
-        <option>square</option>
-        <option>diamond</option>
-        <option>texture</option>-->
-        </select><br>
-
-        <label for="shape-color">Shape color:</label>
-        <input type="color" value="#005E7A" id="shape-color"><br>
-        <button id="add-shape" class="btn btn-info">Add shape</button><br>
+        <canvas id="myCanvasInside" width="1224" height="792" style="border:1px solid #000000;">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
     </div>
-
     <script>
 
     </script>
