@@ -236,6 +236,7 @@ window.onload = function ()
     };
 
     if (canvas.freeDrawingBrush) {
+
         canvasInside.freeDrawingBrush.color = drawingColorEl.value;
         canvasInside.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
         canvasInside.freeDrawingBrush.shadowBlur = 0;
