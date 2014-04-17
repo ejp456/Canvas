@@ -59,6 +59,7 @@ window.onload = function ()
     fabric.Object.prototype.transparentCorners = false;
 
     var drawingModeEl = $('drawing-mode'),
+        selectionModeEl = $('selection-mode'),
         drawingOptionsEl = $('drawing-mode-options'),
         drawingColorEl = $('drawing-color'),
         drawingShadowColorEl = $('drawing-shadow-color'),
@@ -71,8 +72,8 @@ window.onload = function ()
 
     drawingModeEl.onclick = function () {
         //canvas.isDrawingMode = !canvas.isDrawingMode;
-        canvasOutside.isDrawingMode = !canvasOutside.isDrawingMode;
-        canvasInside.isDrawingMode = !canvasInside.isDrawingMode;
+        canvasOutside.isDrawingMode = true;
+        canvasInside.isDrawingMode = true;
         if (canvas.isdrawingmode) {
             drawingmodeel.innerhtml = 'cancel drawing mode';
             drawingoptionsel.style.display = '';
@@ -82,6 +83,13 @@ window.onload = function ()
             drawingoptionsel.style.display = 'none';
         }
     };
+
+    //seperating the drawing and selection mode
+    selectionModeEl.onclick = function () 
+    {
+        canvasOutside.isDrawingMode = false;
+        canvasInside.isDrawingMode = false;
+    }
 
     if (fabric.PatternBrush) {
         var vLinePatternBrush = new fabric.PatternBrush(canvas);
