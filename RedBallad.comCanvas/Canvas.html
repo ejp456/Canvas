@@ -9,6 +9,7 @@
     <script src="Scripts/fabric.js"></script>
     <script src="Scripts/jquery-1.9.1.js"></script>
     <script src="Scripts/canvasDrawing.js"></script>
+    <script src="Scripts/addShape.js"></script>
 
 </head>
 <body>
@@ -66,17 +67,33 @@
 
     <input type="file" id="imgLoader">
 
-    <button class="btn btn-object-action" id="delete-item">
-        Remove selected object/group
-    </button>
-
     <button id="showOutside">Show outside of card</button>
     <button id="showInside">Show inside of card</button>
+
+    <div id="adding-shapes-options">
+        <label for="adding-shapes-selector">Shape:</label>
+        <select id="adding-shapes-selector">
+            <option value="0">Circle</option>
+            <option value="1">Rectangle</option>
+            <option value="2">Triangle</option>
+
+
+            <!--<option>hline</option>
+        <option>vline</option>
+        <option>square</option>
+        <option>diamond</option>
+        <option>texture</option>-->
+        </select><br>
+
+        <label for="shape-color">Shape color:</label>
+        <input type="color" value="#005E7A" id="shape-color"><br>
+        <button id="add-shape" class="btn btn-info">Add shape</button><br>
+    </div>
 
     <script>
 
     </script>
- 
+
 
 </body>
 </html>

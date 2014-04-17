@@ -284,4 +284,28 @@ window.onload = function ()
         }
     };
 
+    //adding shapes to the canvas
+    //add the selected shape to the card
+    var addShape = document.getElementById('add-shape')
+    addShape.onclick = function () {
+        var shape = $('adding-shapes-selector').value;
+        var color = $('shape-color').value;
+        var shapeToAdd;
+        if (shape == 0) {
+            shapeToAdd = new fabric.Circle({
+                radius: 20, fill: color, left: 100, top: 100
+            });
+        }
+        else if (shape == 1) {
+            shapeToAdd = new fabric.Rect({
+                width: 20, height:20, fill: color, left: 100, top: 100
+            });
+        }
+        else if (shape == 2) {
+            shapeToAdd = new fabric.Triangle({
+                radius: 20, fill: color, left: 100, top: 100
+            });
+        }
+        canvas.add(shapeToAdd);
+    }
 }
