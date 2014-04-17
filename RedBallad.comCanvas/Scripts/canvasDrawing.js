@@ -7,6 +7,12 @@ window.onload = function ()
 
     var $ = function (id) { return document.getElementById(id) };
 
+    //hiding the shadow buttons since they don't seem to do anything
+    // but fails to work without them
+    $j('#drawing-shadow-color').hide();
+    $j('#drawing-shadow-width').hide();
+    $j('#drawing-shadow-offset').hide();
+
     //initializing both canvases
     var canvasOutside = new fabric.Canvas('mycanvasOutside', {
         isDrawingMode: true
@@ -64,14 +70,16 @@ window.onload = function ()
     clearEl.onclick = function () { canvas.clear() };
 
     drawingModeEl.onclick = function () {
-        canvas.isDrawingMode = !canvas.isDrawingMode;
-        if (canvas.isDrawingMode) {
-            drawingModeEl.innerHTML = 'Cancel drawing mode';
-            drawingOptionsEl.style.display = '';
+        //canvas.isDrawingMode = !canvas.isDrawingMode;
+        canvasOutside.isDrawingMode = !canvasOutside.isDrawingMode;
+        canvasInside.isDrawingMode = !canvasInside.isDrawingMode;
+        if (canvas.isdrawingmode) {
+            drawingmodeel.innerhtml = 'cancel drawing mode';
+            drawingoptionsel.style.display = '';
         }
         else {
-            drawingModeEl.innerHTML = 'Enter drawing mode';
-            drawingOptionsEl.style.display = 'none';
+            drawingmodeel.innerhtml = 'enter drawing mode';
+            drawingoptionsel.style.display = 'none';
         }
     };
 
@@ -79,7 +87,7 @@ window.onload = function ()
         var vLinePatternBrush = new fabric.PatternBrush(canvas);
         vLinePatternBrush.getPatternSrc = function () {
 
-            var patternCanvas = fabric.document.createElement(canvasName);
+            var patternCanvas = fabric.document.createElement('mycanvasOutside');
             patternCanvas.width = patternCanvas.height = 10;
             var ctx = patternCanvas.getContext('2d');
 
@@ -94,10 +102,10 @@ window.onload = function ()
             return patternCanvas;
         };
 
-        var hLinePatternBrush = new fabric.PatternBrush(canvas);
+        var hLinePatternBrush = new fabric.PatternBrush(canvasOutside);
         hLinePatternBrush.getPatternSrc = function () {
 
-            var patternCanvas = fabric.document.createElement(canvasName);
+            var patternCanvas = fabric.document.createElement('mycanvasOutside');
             patternCanvas.width = patternCanvas.height = 10;
             var ctx = patternCanvas.getContext('2d');
 
@@ -117,7 +125,7 @@ window.onload = function ()
 
             var squareWidth = 10, squareDistance = 2;
 
-            var patternCanvas = fabric.document.createElement(canvasName);
+            var patternCanvas = fabric.document.createElement('mycanvasOutside');
             patternCanvas.width = patternCanvas.height = squareWidth + squareDistance;
             var ctx = patternCanvas.getContext('2d');
 
@@ -131,7 +139,7 @@ window.onload = function ()
         diamondPatternBrush.getPatternSrc = function () {
 
             var squareWidth = 10, squareDistance = 5;
-            var patternCanvas = fabric.document.createElement(canvasName);
+            var patternCanvas = fabric.document.createElement('mycanvasOutside');
             var rect = new fabric.Rect({
                 width: squareWidth,
                 height: squareWidth,
@@ -160,55 +168,72 @@ window.onload = function ()
     $('drawing-mode-selector').onchange = function () {
 
         if (this.value === 'hline') {
-            canvas.freeDrawingBrush = vLinePatternBrush;
+            canvasInside.freeDrawingBrush = vLinePatternBrush;
+            canvasOutside.freeDrawingBrush = vLinePatternBrush;
         }
         else if (this.value === 'vline') {
-            canvas.freeDrawingBrush = hLinePatternBrush;
+            canvasInside.freeDrawingBrush = hLinePatternBrush;
+            canvasOutside.freeDrawingBrush = hLinePatternBrush;
         }
         else if (this.value === 'square') {
-            canvas.freeDrawingBrush = squarePatternBrush;
+            canvasInside.freeDrawingBrush = squarePatternBrush;
+            canvasOutside.freeDrawingBrush = squarePatternBrush;
         }
         else if (this.value === 'diamond') {
-            canvas.freeDrawingBrush = diamondPatternBrush;
+            canvasInside.freeDrawingBrush = diamondPatternBrush;
+            canvasOutside.freeDrawingBrush = diamondPatternBrush;
         }
         else if (this.value === 'texture') {
-            canvas.freeDrawingBrush = texturePatternBrush;
+            canvasInside.freeDrawingBrush = texturePatternBrush;
+            canvasOutside.freeDrawingBrush = texturePatternBrush;
         }
         else {
-            canvas.freeDrawingBrush = new fabric[this.value + 'Brush'](canvas);
+            canvasInside.freeDrawingBrush = new fabric[this.value + 'Brush'](canvasInside);
+            canvasOutside.freeDrawingBrush = new fabric[this.value + 'Brush'](canvasOutside);
         }
 
         if (canvas.freeDrawingBrush) {
-            canvas.freeDrawingBrush.color = drawingColorEl.value;
-            canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
-            canvas.freeDrawingBrush.shadowBlur = parseInt(drawingShadowWidth.value, 10) || 0;
+            canvasInside.freeDrawingBrush.color = drawingColorEl.value;
+            canvasInside.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+            canvasInside.freeDrawingBrush.shadowBlur = parseInt(drawingLineWidthEl.value, 10) || 0;
+            canvasOutside.freeDrawingBrush.color = drawingColorEl.value;
+            canvasOutside.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+            canvasOutside.freeDrawingBrush.shadowBlur = parseInt(drawingLineWidthEl.value, 10) || 0;
         }
     };
 
     drawingColorEl.onchange = function () {
-        canvas.freeDrawingBrush.color = this.value;
+        canvasInside.freeDrawingBrush.color = this.value;
+        canvasOutside.freeDrawingBrush.color = this.value;
     };
     drawingShadowColorEl.onchange = function () {
-        canvas.freeDrawingBrush.shadowColor = this.value;
+        canvasInside.freeDrawingBrush.shadowColor = this.value;
+        canvasOutside.freeDrawingBrush.shadowColor = this.value;
     };
     drawingLineWidthEl.onchange = function () {
-        canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+        canvasInside.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
+        canvasOutside.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
         this.previousSibling.innerHTML = this.value;
     };
     drawingShadowWidth.onchange = function () {
-        canvas.freeDrawingBrush.shadowBlur = parseInt(this.value, 10) || 0;
-        this.previousSibling.innerHTML = this.value;
+        canvasInside.freeDrawingBrush.shadowBlur = 0;
+        canvasOutside.freeDrawingBrush.shadowBlur = 0;
+        //this.previousSibling.innerHTML = this.value;
     };
     drawingShadowOffset.onchange = function () {
-        canvas.freeDrawingBrush.shadowOffsetX =
-        canvas.freeDrawingBrush.shadowOffsetY = parseInt(this.value, 10) || 0;
-        this.previousSibling.innerHTML = this.value;
+        //canvas.freeDrawingBrush.shadowOffsetX =
+        canvasInside.freeDrawingBrush.shadowOffsetY = 0;
+        canvasOutside.freeDrawingBrush.shadowOffsetY =  0;
+        //this.previousSibling.innerHTML = this.value;
     };
 
     if (canvas.freeDrawingBrush) {
-        canvas.freeDrawingBrush.color = drawingColorEl.value;
-        canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
-        canvas.freeDrawingBrush.shadowBlur = 0;
+        canvasInside.freeDrawingBrush.color = drawingColorEl.value;
+        canvasInside.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+        canvasInside.freeDrawingBrush.shadowBlur = 0;
+        canvasOutside.freeDrawingBrush.color = drawingColorEl.value;
+        canvasOutside.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+        canvasOutside.freeDrawingBrush.shadowBlur = 0;
     }
 
     //handling the image uploading
