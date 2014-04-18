@@ -315,7 +315,18 @@ window.onload = function ()
         stroke: 'black',
         strokeWidth: 2
     });
-
+    //add text
+    var addText = document.getElementById('addTextButton')
+    addText.onclick = function ()
+    {
+        var text = $('textArea').value;
+        canvasOutside.add(new fabric.IText(text,
+           {
+               top: 200,
+               left: 170
+           }));
+     }
+    
     canvasInside.add(centerLine);
     canvasOutside.add(centerLine);
 
