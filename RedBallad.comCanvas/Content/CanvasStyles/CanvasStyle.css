@@ -9,7 +9,9 @@
 #mycanvasOutside {
     background-color: tan
 }
-
+#myCanvasInside {
+    background-color: tan
+}
 #display{
     float:left;
 }
