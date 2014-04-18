@@ -308,4 +308,38 @@ window.onload = function ()
         }
         canvas.add(shapeToAdd);
     }
+
+    //initilizaing objects to give more structure to the card
+
+    var centerLine = new fabric.Line([480, 0, 480, 672], {
+        stroke: 'black',
+        strokeWidth: 2
+    });
+
+    canvasInside.add(centerLine);
+    canvasOutside.add(centerLine);
+
+    canvasInside.add(new fabric.IText("Inside Left",
+        {
+            top: 100,
+            left: 170
+        }));
+
+    canvasInside.add(new fabric.IText("Inside Right",
+        {
+            top: 100,
+            left: 650
+        }));
+
+    canvasOutside.add(new fabric.IText("Back",
+       {
+           top: 100,
+           left: 170
+       }));
+
+    canvasOutside.add(new fabric.IText("Front",
+        {
+            top: 100,
+            left: 650
+        }));
 }
