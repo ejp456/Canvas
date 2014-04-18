@@ -1,7 +1,13 @@
 ﻿body {
 }
-#drawCanvas{
+#drawBorder {
+    border:1px solid #000000;
+}
+#drawCanvas{    
    float:right;
+}
+#mycanvasOutside {
+    background-color: tan
 }
 
 #display{
