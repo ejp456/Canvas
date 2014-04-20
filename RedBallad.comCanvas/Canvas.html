@@ -5,15 +5,49 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-
+        <!--
         <link href="Content/bootstrap.min.css" rel="stylesheet" />
         <link href="Content/CanvasStyles/CanvasStyle.css" rel="stylesheet" />
+        -->
         <script src="Scripts/kinetic-v5.1.0.js"></script>
         <script src="Scripts/fabric.js"></script>
         <script src="Scripts/jquery-1.9.1.js"></script>
         <script src="Scripts/canvasDrawing.js"></script>
         <script src="Scripts/addShape.js"></script>
+        <style>
+            #drawBorder {
+                border: 1px solid #000000;
+            }
+            .canvasViewButton {
+                margin-left: 356px;
+                float: initial;
+            }
+            .drawingCanvas {
+                margin-left: 275px;
+                margin-top: 16px;
+                width: 960px;
+                height: 560px;
+                border: 3px solid #000000;
+                background-color: #eabdbd;
 
+            }
+            .toolsColumn {
+                width: 265px;
+                margin-top: 16px;
+                float: left;
+                background-color: #75a8a7;
+            }
+            .modeSelectorButton {
+                width: 98px;
+                margin-top: 9px;
+            }
+            .selectorButtonSpan {
+                margin-left: 30px;
+            }
+            h2 {
+                padding-left: 4px;
+            }
+        </style>
     </head>
     <body>
         <img src="Content/Images/Red_Ballad-150x150.png" />
@@ -21,14 +55,18 @@
             <div id="drawBorder"></div>
             <br />
         </div>
-        <div style="margin-left:760px">
+        <span class="canvasViewButton">
             <button id="showOutside">Show outside of card</button>
-            <button id="showInside">Show inside of card</button><br>
-        </div>
-
-        <div style="float:left; margin-left: 10px">
-            <button id="selection-mode" class="btn btn-info">Select</button><br>
-            <button id="drawing-mode" class="btn btn-info">Draw</button><br>
+            <button id="showInside">Show inside of card</button>
+        </span>
+        <aside class="toolsColumn">
+        <div class="drawingTools">
+            <span class="selectorButtonSpan">
+                <button id="selection-mode" class="modeSelectorButton">Select</button>
+                <button id="drawing-mode" class="modeSelectorButton">Draw</button>
+            </span>
+            <hr />
+            <h2 class="drawingTools"> Drawing Tools </h2>
             <button id="delete-item" class="btn btn-info">Remove selected object/group</button><br>
             <button id="clear-canvas" class="btn btn-info">Clear canvas</button><br>
 
@@ -77,7 +115,7 @@
                 </div>
                 <!-- ############### text tools section ##############-->
                 <hr />
-                <p id="textTools" class="text"> Text Tools </p>
+                <h2 id="textTools" class="textTools"> Text Tools </h2>
                 <div id="text-wrapper" style="margin-top: 10px"  ng-show="getText()">
                     <span>
                     <textarea id="textArea">Enter text here</textarea>
@@ -183,12 +221,13 @@
                 <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
             </div>
         </div>
-        <div style="float:left">
-            <canvas id="mycanvasOutside" width="960" height="672" style="border:4px solid #000000;">
+        </aside>
+        <div class="drawingCanvas">
+            <canvas id="mycanvasOutside" width="960" height="560">
                 Your browser does not support the HTML5 canvas tag.
             </canvas>
 
-            <canvas id="myCanvasInside" width="960" height="672" style="border:4px solid #000000;">
+            <canvas id="myCanvasInside" width="960" height="560">
                 Your browser does not support the HTML5 canvas tag.
             </canvas>
         </div>

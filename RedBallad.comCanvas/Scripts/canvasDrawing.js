@@ -311,10 +311,13 @@ window.onload = function ()
 
     //initilizaing objects to give more structure to the card
 
-    var centerLine = new fabric.Line([480, 0, 480, 672], {
+    var centerLine = new fabric.Line([480, 0, 480, 560], {
         stroke: 'black',
         strokeWidth: 2
     });
+    canvasInside.add(centerLine);
+    canvasOutside.add(centerLine);
+
     //add text
     var addText = document.getElementById('addTextButton')
     addText.onclick = function ()
@@ -326,9 +329,6 @@ window.onload = function ()
                left: 170
            }));
      }
-    
-    canvasInside.add(centerLine);
-    canvasOutside.add(centerLine);
 
     canvasInside.add(new fabric.IText("Inside Left",
         {
