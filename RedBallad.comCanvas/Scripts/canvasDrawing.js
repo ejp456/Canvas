@@ -1,6 +1,5 @@
 ﻿//using window.onload to load this function right away
-window.onload = function () 
-{
+window.onload = function () {
     //adding this to change jquery to use $j instead of $ since it
     //conflicts with the aliasing used by fabric.js
     var $j = jQuery.noConflict();
@@ -22,6 +21,8 @@ window.onload = function ()
         isDrawingMode: true
     });
 
+
+    var canvases = this.__canvases = [canvasInside, canvasOutside];
 
     //show inside of card
     var switchToInside = document.getElementById('showInside')
@@ -85,8 +86,7 @@ window.onload = function ()
     };
 
     //seperating the drawing and selection mode
-    selectionModeEl.onclick = function () 
-    {
+    selectionModeEl.onclick = function () {
         canvasOutside.isDrawingMode = false;
         canvasInside.isDrawingMode = false;
     }
@@ -231,7 +231,7 @@ window.onload = function ()
     drawingShadowOffset.onchange = function () {
         //canvas.freeDrawingBrush.shadowOffsetX =
         canvasInside.freeDrawingBrush.shadowOffsetY = 0;
-        canvasOutside.freeDrawingBrush.shadowOffsetY =  0;
+        canvasOutside.freeDrawingBrush.shadowOffsetY = 0;
         //this.previousSibling.innerHTML = this.value;
     };
 
@@ -298,7 +298,7 @@ window.onload = function ()
         }
         else if (shape == 1) {
             shapeToAdd = new fabric.Rect({
-                width: 20, height:20, fill: color, left: 100, top: 100
+                width: 20, height: 20, fill: color, left: 100, top: 100
             });
         }
         else if (shape == 2) {
@@ -320,15 +320,14 @@ window.onload = function ()
 
     //add text
     var addText = document.getElementById('addTextButton')
-    addText.onclick = function ()
-    {
+    addText.onclick = function () {
         var text = $('textArea').value;
         canvasOutside.add(new fabric.IText(text,
            {
                top: 200,
                left: 170
            }));
-     }
+    }
 
     canvasInside.add(new fabric.IText("Inside Left",
         {
@@ -353,4 +352,79 @@ window.onload = function ()
             top: 100,
             left: 650
         }));
+
+    canvases.forEach(function (c) {
+        c.item(0) && c.item(0).setCoords();
+        c.calcOffset();
+        // back reference
+        c.wrapperEl.canvas = c;
+    });
+
+    //maybe some day I will write my own code. Check out http://fabricjs.com/test/misc/itext.html for answers
+    function setStyle(object, styleName, value) {
+        if (object.setSelectionStyles && object.isEditing) {
+            var style = {};
+            style[styleName] = value;
+            object.setSelectionStyles(style);
+        }
+        else {
+            object[styleName] = value;
+        }
+    }
+    function getStyle(object, styleName) {
+        return (object.getSelectionStyles && object.isEditing)
+          ? object.getSelectionStyles()[styleName]
+          : object[styleName];
+    }
+
+    function addHandler(id, fn, eventName) {
+        document.getElementById(id)[eventName || 'onclick'] = function () {
+            var el = this;
+            canvases.forEach(function (canvas, obj) {
+                if (obj = canvas.getActiveObject()) {
+                    fn.call(el, obj);
+                    canvasOutside.renderAll();
+                    canvasInside.renderAll();
+                }
+            });
+        };
+    }
+
+
+    addHandler('bold', function (obj) {
+        var isBold = getStyle(obj, 'fontWeight') === 'bold';
+        setStyle(obj, 'fontWeight', isBold ? '' : 'bold');
+        window.alert("sometext");
+    }, 'onclick');
+
+    addHandler('setTextItalic', function (obj) {
+        var isItalic = getStyle(obj, 'fontStyle') === 'italic';
+        setStyle(obj, 'fontStyle', 'italic');
+    }, 'onclick');
+
+    addHandler('underline', function (obj) {
+        var isUnderline = (getStyle(obj, 'textDecoration') || '').indexOf('underline') > -1;
+        setStyle(obj, 'textDecoration', isUnderline ? '' : 'underline');
+    });
+
+    addHandler('line-through', function (obj) {
+        var isLinethrough = (getStyle(obj, 'textDecoration') || '').indexOf('line-through') > -1;
+        setStyle(obj, 'textDecoration', isLinethrough ? '' : 'line-through');
+    });
+
+    addHandler('color', function (obj) {
+        setStyle(obj, 'fill', this.value);
+    }, 'onchange');
+
+    addHandler('bg-color', function (obj) {
+        setStyle(obj, 'textBackgroundColor', this.value);
+    }, 'onchange');
+
+    addHandler('size', function (obj) {
+        setStyle(obj, 'fontSize', parseInt(this.value, 10));
+    }, 'onchange');
+
+    addHandler('font-family', function (obj) {
+        setStyle(obj, 'fontFamily', this.value);
+    }, 'onchange');
 }

@@ -1,65 +1,71 @@
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="kitchensink">
-    
-    <!--<html xmlns="http://www.w3.org/1999/xhtml"> -->
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <!--
-        <link href="Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="Content/CanvasStyles/CanvasStyle.css" rel="stylesheet" />
-        -->
-        <script src="Scripts/kinetic-v5.1.0.js"></script>
-        <script src="Scripts/fabric.js"></script>
-        <script src="Scripts/jquery-1.9.1.js"></script>
-        <script src="Scripts/canvasDrawing.js"></script>
-        <script src="Scripts/addShape.js"></script>
-        <style>
-            #drawBorder {
-                border: 1px solid #000000;
-            }
-            .canvasViewButton {
-                margin-left: 356px;
-                float: initial;
-            }
-            .drawingCanvas {
-                margin-left: 275px;
-                margin-top: 16px;
-                width: 960px;
-                height: 560px;
-                border: 3px solid #000000;
-                background-color: #eabdbd;
 
-            }
-            .toolsColumn {
-                width: 265px;
-                margin-top: 16px;
-                float: left;
-                background-color: #75a8a7;
-            }
-            .modeSelectorButton {
-                width: 98px;
-                margin-top: 9px;
-            }
-            .selectorButtonSpan {
-                margin-left: 30px;
-            }
-            h2 {
-                padding-left: 4px;
-            }
-        </style>
-    </head>
-    <body>
-        <img src="Content/Images/Red_Ballad-150x150.png" />
-        <div class="container">
-            <div id="drawBorder"></div>
-            <br />
-        </div>
-        <span class="canvasViewButton">
-            <button id="showOutside">Show outside of card</button>
-            <button id="showInside">Show inside of card</button>
-        </span>
-        <aside class="toolsColumn">
+<!--<html xmlns="http://www.w3.org/1999/xhtml"> -->
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/CanvasStyles/CanvasStyle.css" rel="stylesheet" />
+    -->
+    <script src="Scripts/kinetic-v5.1.0.js"></script>
+    <script src="Scripts/fabric.js"></script>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/canvasDrawing.js"></script>
+    <script src="Scripts/addShape.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <style>
+        #drawBorder {
+            border: 1px solid #000000;
+        }
+
+        .canvasViewButton {
+            margin-left: 356px;
+            float: initial;
+        }
+
+        .drawingCanvas {
+            margin-left: 275px;
+            margin-top: 16px;
+            width: 960px;
+            height: 560px;
+            border: 3px solid #000000;
+            background-color: #eabdbd;
+        }
+
+        .toolsColumn {
+            width: 265px;
+            margin-top: 16px;
+            float: left;
+            background-color: #75a8a7;
+        }
+
+        .modeSelectorButton {
+            width: 98px;
+            margin-top: 9px;
+        }
+
+        .selectorButtonSpan {
+            margin-left: 30px;
+        }
+
+        h2 {
+            padding-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <img src="Content/Images/Red_Ballad-150x150.png" />
+    <div class="container">
+        <div id="drawBorder"></div>
+        <br />
+    </div>
+    <span class="canvasViewButton">
+        <button id="showOutside">Show outside of card</button>
+        <button id="showInside">Show inside of card</button>
+    </span>
+    <aside class="toolsColumn">
         <div class="drawingTools">
             <span class="selectorButtonSpan">
                 <button id="selection-mode" class="modeSelectorButton">Select</button>
@@ -69,7 +75,6 @@
             <h2 class="drawingTools"> Drawing Tools </h2>
             <button id="delete-item" class="btn btn-info">Remove selected object/group</button><br>
             <button id="clear-canvas" class="btn btn-info">Clear canvas</button><br>
-
             <div id="drawing-mode-options">
                 <label for="drawing-mode-selector">Mode:</label>
                 <select id="drawing-mode-selector">
@@ -77,22 +82,17 @@
                     <option>Circle</option>
                     <option>Spray</option>
                     <option>Pattern</option>
-
                     <!--<option>hline</option>
                     <option>vline</option>
                     <option>square</option>
                     <option>diamond</option>
                     <option>texture</option>-->
                 </select><br>
-
                 <label for="drawing-line-width">Line width:</label>
                 <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
-
                 <label for="drawing-color">Line color:</label>
                 <input type="color" value="#005E7A" id="drawing-color"><br>
-
                 <input type="file" id="imgLoader">
-
 
                 <div id="adding-shapes-options">
                     <label for="adding-shapes-selector">Shape:</label>
@@ -101,14 +101,12 @@
                         <option value="1">Rectangle</option>
                         <option value="2">Triangle</option>
 
-
                         <!--<option>hline</option>
                         <option>vline</option>
                         <option>square</option>
                         <option>diamond</option>
                         <option>texture</option>-->
                     </select><br>
-
                     <label for="shape-color">Shape color:</label>
                     <input type="color" value="#005E7A" id="shape-color"><br>
                     <button id="add-shape" class="btn btn-info">Add shape</button>
@@ -116,14 +114,14 @@
                 <!-- ############### text tools section ##############-->
                 <hr />
                 <h2 id="textTools" class="textTools"> Text Tools </h2>
-                <div id="text-wrapper" style="margin-top: 10px"  ng-show="getText()">
+                <div id="text-wrapper" style="margin-top: 10px" ng-show="getText()">
                     <span>
-                    <textarea id="textArea">Enter text here</textarea>
-                    <button type="button" class="add-text-button" id="addTextButton"
-                            ng-click="addText()"
-                            ng-class="{'btn-inverse': isItalic()}">
-                        Add Text
-                    </button>
+                        <textarea id="textArea">Enter text here</textarea>
+                        <button type="button" class="add-text-button" id="addTextButton"
+                                ng-click="addText()"
+                                ng-class="{'btn-inverse': isItalic()}">
+                            Add Text
+                        </button>
                     </span>
                     <div id="text-controls">
                         <label for="font-family" style="display:inline-block">Font family:</label>
@@ -144,97 +142,101 @@
                             <option value="engagement">Engagement</option>
                         </select>
                         <br>
-                        <label for="text-align" style="display:inline-block">Text align:</label>
+                        <!--<label for="text-align" style="display:inline-block">Text align:</label>
                         <select id="text-align" class="btn-object-action" bind-value-to="textAlign">
                             <option>Left</option>
                             <option>Center</option>
                             <option>Right</option>
                             <option>Justify</option>
-                        </select>
+                        </select>-->
                         <div>
-                            <label for="text-bg-color">Background color:</label>
-                            <input type="color" value="" id="text-bg-color" size="10" class="btn-object-action"
-                                   bind-value-to="bgColor">
+                            <label for="text-bg-color">Text color:</label>
+                            <input type="color" value="" id="color" size="10" class="btn-object-action"
+                                   bind-value-to="Color">
                         </div>
                         <div>
                             <label for="text-lines-bg-color">Background text color:</label>
-                            <input type="color" value="" id="text-lines-bg-color" size="10" class="btn-object-action"
+                            <input type="color" value="" id="bg-color" size="10" class="btn-object-action"
                                    bind-value-to="textBgColor">
                         </div>
-                        <div>
+                        <!--<div>
                             <label for="text-stroke-color">Stroke color:</label>
                             <input type="color" value="" id="text-stroke-color" class="btn-object-action"
                                    bind-value-to="strokeColor">
-                        </div>
-                        <div>
+                        </div>-->
+                        <!--<div>
                             <label for="text-stroke-width">Stroke width:</label>
                             <input type="range" value="1" min="1" max="5" id="text-stroke-width" class="btn-object-action"
                                    bind-value-to="strokeWidth">
-                        </div>
+                        </div>-->
                         <div>
                             <label for="text-font-size">Font size:</label>
-                            <input type="range" value="" min="1" max="120" step="1" id="text-font-size" class="btn-object-action"
+                            <input type="range" value="" min="1" max="120" step="1" id="size" class="btn-object-action"
                                    bind-value-to="fontSize">
                         </div>
-                        <div>
+                        <!--<div>
                             <label for="text-line-height">Line height:</label>
                             <input type="range" value="" min="0" max="10" step="0.1" id="text-line-height" class="btn-object-action"
                                    bind-value-to="lineHeight">
-                        </div>
+                        </div>-->
                     </div>
                     <div id="text-controls-additional">
-                        <button type="button" class="btn btn-object-action"
+                        <button type="button" class="btn btn-object-action" id="bold"
                                 ng-click="toggleBold()"
                                 ng-class="{'btn-inverse': isBold()}">
                             Bold
                         </button>
-                        <button type="button" class="btn btn-object-action" id="text-cmd-italic"
+                        <button type="button" class="btn btn-object-action" id="setTextItalic"
                                 ng-click="toggleItalic()"
                                 ng-class="{'btn-inverse': isItalic()}">
                             Italic
                         </button>
-                        <button type="button" class="btn btn-object-action" id="text-cmd-underline"
+                        <button type="button" class="btn btn-object-action" id="underline"
                                 ng-click="toggleUnderline()"
                                 ng-class="{'btn-inverse': isUnderline()}">
                             Underline
                         </button>
-                        <button type="button" class="btn btn-object-action" id="text-cmd-linethrough"
+                        <button type="button" class="btn btn-object-action" id="line-through"
                                 ng-click="toggleLinethrough()"
                                 ng-class="{'btn-inverse': isLinethrough()}">
                             Linethrough
                         </button>
-                        <button type="button" class="btn btn-object-action" id="text-cmd-overline"
+                        <!--<button type="button" class="btn btn-object-action" id="text-cmd-overline"
                                 ng-click="toggleOverline()"
                                 ng-class="{'btn-inverse': isOverline()}">
                             Overline
-                        </button>
+                        </button>-->
                     </div>
                 </div>
                 <!-- ################## end text tools section ###############-->
                 <!--<label for="drawing-shadow-color">Shadow color:</label>-->
                 <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
-
                 <!--<label for="drawing-shadow-width">Shadow width:</label>-->
                 <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
-
                 <!--<label for="drawing-shadow-offset">Shadow offset:</label>-->
                 <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+                <p>
+                    <!--<button id="bold">Bold</button>-->
+                    <button id="italic">Italic</button>
+                    <!--<button id="underline">Underline</button>-->
+                    <!--<button id="line-through">Line-through</button>-->
+                    <!--<input type="color" id="color">
+                    <input type="color" id="bg-color">
+                    <input type="range" min="5" max="150" value="40" id="size">-->
+                </p>
             </div>
         </div>
-        </aside>
-        <div class="drawingCanvas">
-            <canvas id="mycanvasOutside" width="960" height="560">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-
-            <canvas id="myCanvasInside" width="960" height="560">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-        </div>
-        <script>
-
-        </script>
-
-
-    </body>
+    </aside>
+    <div class="drawingCanvas">
+        <canvas id="mycanvasOutside" width="960" height="560">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+        <canvas id="myCanvasInside" width="960" height="560">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+    </div>
+    <script>
+   
+    </script>
+</body>
 </html>
