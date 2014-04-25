@@ -322,7 +322,7 @@ window.onload = function () {
     var addText = document.getElementById('addTextButton')
     addText.onclick = function () {
         var text = $('textArea').value;
-        canvasOutside.add(new fabric.IText(text,
+        canvas.add(new fabric.IText(text,
            {
                top: 200,
                left: 170
