@@ -394,7 +394,6 @@ window.onload = function () {
     addHandler('bold', function (obj) {
         var isBold = getStyle(obj, 'fontWeight') === 'bold';
         setStyle(obj, 'fontWeight', isBold ? '' : 'bold');
-        window.alert("sometext");
     }, 'onclick');
 
     addHandler('setTextItalic', function (obj) {

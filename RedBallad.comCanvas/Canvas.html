@@ -50,6 +50,10 @@
             margin-left: 30px;
         }
 
+        .selectorDeletionButton {
+            margin-left: 20px;
+        }
+
         h2 {
             padding-left: 4px;
         }
@@ -72,160 +76,167 @@
                 <button id="drawing-mode" class="modeSelectorButton">Draw</button>
             </span>
             <hr />
-            <h2 class="drawingTools"> Drawing Tools </h2>
-            <button id="delete-item" class="btn btn-info">Remove selected object/group</button><br>
-            <button id="clear-canvas" class="btn btn-info">Clear canvas</button><br>
-            <div id="drawing-mode-options">
-                <label for="drawing-mode-selector">Mode:</label>
-                <select id="drawing-mode-selector">
-                    <option>Pencil</option>
-                    <option>Circle</option>
-                    <option>Spray</option>
-                    <option>Pattern</option>
-                    <!--<option>hline</option>
+            <span class="selectorDeletionButton">
+                <button id="delete-item" class="btn btn-info">Remove Selected</button>
+                <button id="clear-canvas" class="btn btn-info">Clear canvas</button><br>
+            </span>
+                <hr />
+                <h2 class="drawingTools"> Drawing Tools </h2>
+                <div id="drawing-mode-options">
+                    <label for="drawing-mode-selector">Mode:</label>
+                    <select id="drawing-mode-selector">
+                        <option>Pencil</option>
+                        <option>Circle</option>
+                        <option>Spray</option>
+                        <option>Pattern</option>
+                        <!--<option>hline</option>
+                <option>vline</option>
+                <option>square</option>
+                <option>diamond</option>
+                <option>texture</option>-->
+                    </select><br>
+                    <label for="drawing-line-width">Line width:</label>
+                    <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+                    <label for="drawing-color">Line color:</label>
+                    <input type="color" value="#005E7A" id="drawing-color"><br>
+
+                    <hr />
+                    <h2 class="drawingTools"> Add Images </h2>
+                    <label for="adding-shapes-selector">Upload Image:</label>
+                    <input type="file" id="imgLoader">
+
+                    <div id="adding-shapes-options">
+                        <label for="adding-shapes-selector">Shape:</label>
+                        <select id="adding-shapes-selector">
+                            <option value="0">Circle</option>
+                            <option value="1">Rectangle</option>
+                            <option value="2">Triangle</option>
+
+                            <!--<option>hline</option>
                     <option>vline</option>
                     <option>square</option>
                     <option>diamond</option>
                     <option>texture</option>-->
-                </select><br>
-                <label for="drawing-line-width">Line width:</label>
-                <span class="info">30</span><input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
-                <label for="drawing-color">Line color:</label>
-                <input type="color" value="#005E7A" id="drawing-color"><br>
-                <input type="file" id="imgLoader">
-
-                <div id="adding-shapes-options">
-                    <label for="adding-shapes-selector">Shape:</label>
-                    <select id="adding-shapes-selector">
-                        <option value="0">Circle</option>
-                        <option value="1">Rectangle</option>
-                        <option value="2">Triangle</option>
-
-                        <!--<option>hline</option>
-                        <option>vline</option>
-                        <option>square</option>
-                        <option>diamond</option>
-                        <option>texture</option>-->
-                    </select><br>
-                    <label for="shape-color">Shape color:</label>
-                    <input type="color" value="#005E7A" id="shape-color"><br>
-                    <button id="add-shape" class="btn btn-info">Add shape</button>
-                </div>
-                <!-- ############### text tools section ##############-->
-                <hr />
-                <h2 id="textTools" class="textTools"> Text Tools </h2>
-                <div id="text-wrapper" style="margin-top: 10px" ng-show="getText()">
-                    <span>
-                        <textarea id="textArea">Enter text here</textarea>
-                        <button type="button" class="add-text-button" id="addTextButton"
-                                ng-click="addText()"
-                                ng-class="{'btn-inverse': isItalic()}">
-                            Add Text
-                        </button>
-                    </span>
-                    <div id="text-controls">
-                        <label for="font-family" style="display:inline-block">Font family:</label>
-                        <select id="font-family" class="btn-object-action" bind-value-to="fontFamily">
-                            <option value="arial">Arial</option>
-                            <option value="helvetica" selected>Helvetica</option>
-                            <option value="myriad pro">Myriad Pro</option>
-                            <option value="delicious">Delicious</option>
-                            <option value="verdana">Verdana</option>
-                            <option value="georgia">Georgia</option>
-                            <option value="courier">Courier</option>
-                            <option value="comic sans ms">Comic Sans MS</option>
-                            <option value="impact">Impact</option>
-                            <option value="monaco">Monaco</option>
-                            <option value="optima">Optima</option>
-                            <option value="hoefler text">Hoefler Text</option>
-                            <option value="plaster">Plaster</option>
-                            <option value="engagement">Engagement</option>
-                        </select>
-                        <br>
-                        <!--<label for="text-align" style="display:inline-block">Text align:</label>
-                        <select id="text-align" class="btn-object-action" bind-value-to="textAlign">
-                            <option>Left</option>
-                            <option>Center</option>
-                            <option>Right</option>
-                            <option>Justify</option>
-                        </select>-->
-                        <div>
-                            <label for="text-bg-color">Text color:</label>
-                            <input type="color" value="" id="color" size="10" class="btn-object-action"
-                                   bind-value-to="Color">
-                        </div>
-                        <div>
-                            <label for="text-lines-bg-color">Background text color:</label>
-                            <input type="color" value="" id="bg-color" size="10" class="btn-object-action"
-                                   bind-value-to="textBgColor">
-                        </div>
-                        <!--<div>
-                            <label for="text-stroke-color">Stroke color:</label>
-                            <input type="color" value="" id="text-stroke-color" class="btn-object-action"
-                                   bind-value-to="strokeColor">
-                        </div>-->
-                        <!--<div>
-                            <label for="text-stroke-width">Stroke width:</label>
-                            <input type="range" value="1" min="1" max="5" id="text-stroke-width" class="btn-object-action"
-                                   bind-value-to="strokeWidth">
-                        </div>-->
-                        <div>
-                            <label for="text-font-size">Font size:</label>
-                            <input type="range" value="" min="1" max="120" step="1" id="size" class="btn-object-action"
-                                   bind-value-to="fontSize">
-                        </div>
-                        <!--<div>
-                            <label for="text-line-height">Line height:</label>
-                            <input type="range" value="" min="0" max="10" step="0.1" id="text-line-height" class="btn-object-action"
-                                   bind-value-to="lineHeight">
-                        </div>-->
+                        </select><br>
+                        <label for="shape-color">Shape color:</label>
+                        <input type="color" value="#005E7A" id="shape-color"><br>
+                        <button id="add-shape" class="btn btn-info">Add shape</button>
                     </div>
-                    <div id="text-controls-additional">
-                        <button type="button" class="btn btn-object-action" id="bold"
-                                ng-click="toggleBold()"
-                                ng-class="{'btn-inverse': isBold()}">
-                            Bold
-                        </button>
-                        <button type="button" class="btn btn-object-action" id="setTextItalic"
-                                ng-click="toggleItalic()"
-                                ng-class="{'btn-inverse': isItalic()}">
-                            Italic
-                        </button>
-                        <button type="button" class="btn btn-object-action" id="underline"
-                                ng-click="toggleUnderline()"
-                                ng-class="{'btn-inverse': isUnderline()}">
-                            Underline
-                        </button>
-                        <button type="button" class="btn btn-object-action" id="line-through"
-                                ng-click="toggleLinethrough()"
-                                ng-class="{'btn-inverse': isLinethrough()}">
-                            Linethrough
-                        </button>
-                        <!--<button type="button" class="btn btn-object-action" id="text-cmd-overline"
-                                ng-click="toggleOverline()"
-                                ng-class="{'btn-inverse': isOverline()}">
-                            Overline
-                        </button>-->
+                    <!-- ############### text tools section ##############-->
+                    <hr />
+                    <h2 id="textTools" class="textTools"> Text Tools </h2>
+                    <div id="text-wrapper" style="margin-top: 10px" ng-show="getText()">
+                        <span>
+                            <textarea id="textArea">Enter text here</textarea>
+                            <button type="button" class="add-text-button" id="addTextButton"
+                                    ng-click="addText()"
+                                    ng-class="{'btn-inverse': isItalic()}">
+                                Add Text
+                            </button>
+                        </span>
+                        <div id="text-controls">
+                            <label for="font-family" style="display:inline-block">Font family:</label>
+                            <select id="font-family" class="btn-object-action" bind-value-to="fontFamily">
+                                <option value="arial">Arial</option>
+                                <option value="helvetica" selected>Helvetica</option>
+                                <option value="myriad pro">Myriad Pro</option>
+                                <option value="delicious">Delicious</option>
+                                <option value="verdana">Verdana</option>
+                                <option value="georgia">Georgia</option>
+                                <option value="courier">Courier</option>
+                                <option value="comic sans ms">Comic Sans MS</option>
+                                <option value="impact">Impact</option>
+                                <option value="monaco">Monaco</option>
+                                <option value="optima">Optima</option>
+                                <option value="hoefler text">Hoefler Text</option>
+                                <option value="plaster">Plaster</option>
+                                <option value="engagement">Engagement</option>
+                            </select>
+                            <br>
+                            <!--<label for="text-align" style="display:inline-block">Text align:</label>
+                    <select id="text-align" class="btn-object-action" bind-value-to="textAlign">
+                        <option>Left</option>
+                        <option>Center</option>
+                        <option>Right</option>
+                        <option>Justify</option>
+                    </select>-->
+                            <div>
+                                <label for="text-bg-color">Text color:</label>
+                                <input type="color" value="" id="color" size="10" class="btn-object-action"
+                                       bind-value-to="Color">
+                            </div>
+                            <div>
+                                <label for="text-lines-bg-color">Background text color:</label>
+                                <input type="color" value="" id="bg-color" size="10" class="btn-object-action"
+                                       bind-value-to="textBgColor">
+                            </div>
+                            <!--<div>
+                        <label for="text-stroke-color">Stroke color:</label>
+                        <input type="color" value="" id="text-stroke-color" class="btn-object-action"
+                               bind-value-to="strokeColor">
+                    </div>-->
+                            <!--<div>
+                        <label for="text-stroke-width">Stroke width:</label>
+                        <input type="range" value="1" min="1" max="5" id="text-stroke-width" class="btn-object-action"
+                               bind-value-to="strokeWidth">
+                    </div>-->
+                            <div>
+                                <label for="text-font-size">Font size:</label>
+                                <input type="range" value="" min="1" max="120" step="1" id="size" class="btn-object-action"
+                                       bind-value-to="fontSize">
+                            </div>
+                            <!--<div>
+                        <label for="text-line-height">Line height:</label>
+                        <input type="range" value="" min="0" max="10" step="0.1" id="text-line-height" class="btn-object-action"
+                               bind-value-to="lineHeight">
+                    </div>-->
+                        </div>
+                        <div id="text-controls-additional">
+                            <button type="button" class="btn btn-object-action" id="bold"
+                                    ng-click="toggleBold()"
+                                    ng-class="{'btn-inverse': isBold()}">
+                                Bold
+                            </button>
+                            <button type="button" class="btn btn-object-action" id="setTextItalic"
+                                    ng-click="toggleItalic()"
+                                    ng-class="{'btn-inverse': isItalic()}">
+                                Italic
+                            </button>
+                            <button type="button" class="btn btn-object-action" id="underline"
+                                    ng-click="toggleUnderline()"
+                                    ng-class="{'btn-inverse': isUnderline()}">
+                                Underline
+                            </button>
+                            <button type="button" class="btn btn-object-action" id="line-through"
+                                    ng-click="toggleLinethrough()"
+                                    ng-class="{'btn-inverse': isLinethrough()}">
+                                Linethrough
+                            </button>
+                            <!--<button type="button" class="btn btn-object-action" id="text-cmd-overline"
+                            ng-click="toggleOverline()"
+                            ng-class="{'btn-inverse': isOverline()}">
+                        Overline
+                    </button>-->
+                        </div>
                     </div>
+                    <!-- ################## end text tools section ###############-->
+                    <!--<label for="drawing-shadow-color">Shadow color:</label>-->
+                    <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
+                    <!--<label for="drawing-shadow-width">Shadow width:</label>-->
+                    <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
+                    <!--<label for="drawing-shadow-offset">Shadow offset:</label>-->
+                    <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
+                    <p>
+                        <!--<button id="bold">Bold</button>-->
+                        <!--<button id="italic">Italic</button>-->
+                        <!--<button id="underline">Underline</button>-->
+                        <!--<button id="line-through">Line-through</button>-->
+                        <!--<input type="color" id="color">
+                <input type="color" id="bg-color">
+                <input type="range" min="5" max="150" value="40" id="size">-->
+                    </p>
                 </div>
-                <!-- ################## end text tools section ###############-->
-                <!--<label for="drawing-shadow-color">Shadow color:</label>-->
-                <input type="color" value="#005E7A" id="drawing-shadow-color"><br>
-                <!--<label for="drawing-shadow-width">Shadow width:</label>-->
-                <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
-                <!--<label for="drawing-shadow-offset">Shadow offset:</label>-->
-                <!--<span class="info">0</span>--><input type="range" value="0" min="0" max="50" id="drawing-shadow-offset"><br>
-                <p>
-                    <!--<button id="bold">Bold</button>-->
-                    <button id="italic">Italic</button>
-                    <!--<button id="underline">Underline</button>-->
-                    <!--<button id="line-through">Line-through</button>-->
-                    <!--<input type="color" id="color">
-                    <input type="color" id="bg-color">
-                    <input type="range" min="5" max="150" value="40" id="size">-->
-                </p>
-            </div>
-        </div>
+</div>
     </aside>
     <div class="drawingCanvas">
         <canvas id="mycanvasOutside" width="960" height="560">
