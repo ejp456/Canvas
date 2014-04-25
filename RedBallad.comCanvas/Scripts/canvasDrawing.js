@@ -69,7 +69,11 @@ window.onload = function () {
         drawingShadowOffset = $('drawing-shadow-offset'),
         clearEl = $('clear-canvas');
 
-    clearEl.onclick = function () { canvas.clear() };
+    clearEl.onclick = function () {
+        canvas.clear()
+        canvasInside.add(centerLine);
+        canvasOutside.add(centerLine);
+        };
 
     drawingModeEl.onclick = function () {
         //canvas.isDrawingMode = !canvas.isDrawingMode;
